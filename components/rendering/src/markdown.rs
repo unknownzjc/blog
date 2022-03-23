@@ -89,6 +89,19 @@ fn fix_link(
                 return Err(format!("Relative link {} not found.", link).into());
             }
         }
+    } else if link.starts_with("content/") {
+        // support content/ absolute link, treat content/ as @/
+        // replace content/ with @/
+        let content_root_lkink = link.replacen("content/", "@/", 1);
+        match resolve_internal_link(&content_root_lkink, &context.permalinks) {
+            Ok(resolved) => {
+                internal_links.push((resolved.md_path, resolved.anchor));
+                resolved.permalink
+            }
+            Err(_) => {
+                return Err(format!("Relative link {} not found.", link).into());
+            }
+        }
     } else {
         if is_external_link(link) {
             external_links.push(link.to_owned());
