@@ -52,7 +52,7 @@ minify_html = false
 # directory is processed. Defaults to none, which means that all asset files are
 # copied over to the `public` directory.
 # Example:
-#     ignored_content = ["*.{graphml,xlsx}", "temp.*"]
+#     ignored_content = ["*.{graphml,xlsx}", "temp.*", "**/build_folder"]
 ignored_content = []
 
 # When set to "true", a feed is automatically generated.
@@ -129,6 +129,12 @@ skip_prefixes = [
 skip_anchor_prefixes = [
     "https://caniuse.com/",
 ]
+
+# Treat internal link problems as either "error" or "warn", default is "error"
+internal_level = "error"
+
+# Treat external link problems as either "error" or "warn", default is "error"
+external_level = "error"
 
 # Various slugification strategies, see below for details
 # Defaults to everything being a slug
