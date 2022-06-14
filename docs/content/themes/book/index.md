@@ -3,11 +3,11 @@
 title = "book"
 description = "A book theme inspired from GitBook/mdBook"
 template = "theme.html"
-date = 2022-03-17T09:10:12+01:00
+date = 2022-06-10T21:55:08+02:00
 
 [extra]
-created = 2022-03-17T09:10:12+01:00
-updated = 2022-03-17T09:10:12+01:00
+created = 2022-06-10T21:55:08+02:00
+updated = 2022-06-10T21:55:08+02:00
 repository = "https://github.com/getzola/book.git"
 homepage = "https://github.com/getzola/book"
 minimum_version = "0.5.0"
@@ -29,9 +29,9 @@ or books.
 
 ## Contents
 
-- [Installation](#installation)
-- [Options](#options)
-  - [Numbered chapters](#numbered-chapters)
+- Installation
+- Options
+  - Numbered chapters
 
 ## Installation
 First download this theme to your `themes` directory:

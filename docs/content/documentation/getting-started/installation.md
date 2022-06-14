@@ -88,7 +88,7 @@ $ snap install --edge zola
 ### Docker
 
 Zola is available on [the GitHub registry](https://github.com/getzola/zola/pkgs/container/zola).
-It has no `latest` tag, you will need to specify a [specific version to pull](https://hub.docker.com/r/balthek/zola/tags).
+It has no `latest` tag, you will need to specify a [specific version to pull](https://github.com/getzola/zola/pkgs/container/zola/versions).
 
 ```sh
 $ docker pull ghcr.io/getzola/zola:v0.15.1
@@ -110,7 +110,7 @@ You can now browse http://localhost:8080.
 
 > To enable live browser reload, you may have to bind to port 1024. Zola searches for an open
 > port between 1024 and 9000 for live reload. The new docker command would be
-> `$ docker run -u "$(id -u):$(id -g)" -v $PWD:/app --workdir /app -p 8080:8080 -p 1024:1024 balthek/zola:0.14.0 serve --interface 0.0.0.0 --port 8080 --base-url localhost`
+> `$ docker run -u "$(id -u):$(id -g)" -v $PWD:/app --workdir /app -p 8080:8080 -p 1024:1024 ghcr.io/getzola/zola:v0.15.1 serve --interface 0.0.0.0 --port 8080 --base-url localhost`
 
 ## Windows
 
