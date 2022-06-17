@@ -4,7 +4,7 @@ name: Build Win Package
 
 jobs:
   release:
-    name: Release Packaging
+    name: Release Win Packaging
     env:
       PROJECT_NAME_UNDERSCORE: win-zola
     runs-on: windows-latest
