@@ -1,6 +1,6 @@
 on:
   workflow_dispatch:
-name: Build Package
+name: Build Win Package
 
 jobs:
   release:
