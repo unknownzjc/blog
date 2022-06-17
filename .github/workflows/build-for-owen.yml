@@ -26,6 +26,8 @@ jobs:
         run: echo ::set-output name=REPOSITORY_NAME::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}' | sed -e "s/:refs//")
         shell: bash
       - uses: actions/checkout@v2
+      - uses: ilammy/msvc-dev-cmd@v1
+        if: matrix.target == "windows-latest"
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
