@@ -30,6 +30,7 @@ jobs:
         if: matrix.target == 'windows-latest'
         with:
           arch: amd64_x86
+          spectre: true
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
