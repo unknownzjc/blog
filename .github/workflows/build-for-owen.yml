@@ -68,3 +68,4 @@ jobs:
         with:
           artifacts: "./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}${{ matrix.suffix }}"
           token: ${{ secrets.GITHUB_TOKEN }}
+          allowUpdates: true
