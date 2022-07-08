@@ -71,6 +71,7 @@ jobs:
           type: '${{matrix.archive_type}}'
           filename: '${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}-${{ matrix.target }}${{matrix.suffix}}'
           path: "./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}"
+          directory: "./target/release"
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}-${{ matrix.target }}${{matrix.suffix}}"
