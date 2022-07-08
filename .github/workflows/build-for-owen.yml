@@ -69,11 +69,11 @@ jobs:
         uses: thedoctor0/zip-release@main
         with:
           type: '${{matrix.archive_type}}'
-          filename: '${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}-${{ matrix.target }}{{matrix.suffix}}'
+          filename: '${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}-${{ matrix.target }}${{matrix.suffix}}'
           path: "./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}"
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}-${{ matrix.target }}{{matrix.suffix}}"
+          artifacts: "${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}-${{ matrix.target }}${{matrix.suffix}}"
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
  
