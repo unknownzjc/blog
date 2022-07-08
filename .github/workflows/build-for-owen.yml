@@ -21,10 +21,12 @@ jobs:
           #   suffix: .exe
           - os: macos-latest
             target: x86_64-apple-darwin
-            suffix: ''
+            suffix: '-macos'
+            archive: zip
           - os: ubuntu-latest
-            target: x86_64-unknown-linux-gnu
-            suffix: ''
+            target: x86_64-unknown-linux-musl
+            suffix: '-linux'
+            archive: tar.gz
 
     steps:
       - id: get_repository_name
@@ -64,8 +66,15 @@ jobs:
           name: ${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}-${{ matrix.target }}
           path: ./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}${{ matrix.suffix }}
 
-      - uses: ncipollo/release-action@v1
+      # - uses: ncipollo/release-action@v1
+      #   with:
+      #     artifacts: "./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}${{ matrix.suffix }}"
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     allowUpdates: true
+      - name: Compile and release
+        uses: rust-build/rust-build.action@v1.3.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          artifacts: "./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}${{ matrix.suffix }}"
-          token: ${{ secrets.GITHUB_TOKEN }}
-          allowUpdates: true
+          RUSTTARGET: ${{ matrix.target }}
+          ARCHIVE_TYPES: ${{ matrix.archive }}
