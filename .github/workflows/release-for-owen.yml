@@ -1,3 +1,4 @@
+name: Release for owen
 on:
   release:
     types: [created]

@@ -1,5 +1,8 @@
 on:
   workflow_dispatch:
+  push:
+    tags:
+    - '*'
 name: Build Package
 
 jobs:
@@ -7,7 +10,9 @@ jobs:
     name: Release Packaging
     env:
       PROJECT_NAME_UNDERSCORE: zola
-    runs-on: '${{ matrix.os }}'
+    runs-on: '${{ matrix.os }}'    
+    permissions:
+      contents: write
     strategy:
       matrix:
         include:
@@ -58,8 +63,8 @@ jobs:
         with:
           name: ${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}-${{ matrix.target }}
           path: ./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}${{ matrix.suffix }}
-      - name: 'Upload Artifact'
-        uses: actions/upload-artifact@v2
+
+      - uses: ncipollo/release-action@v1
         with:
-          name: ${{ env.PROJECT_NAME_UNDERSCORE }}
-          path: target/release/${{ env.PROJECT_NAME_UNDERSCORE }}
+          artifacts: "./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}${{ matrix.suffix }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
