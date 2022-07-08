@@ -21,12 +21,12 @@ jobs:
           #   suffix: .exe
           - os: macos-latest
             target: x86_64-apple-darwin
-            suffix: '-macos'
-            archive: zip
+            suffix: '.zip'
+            archive_type: zip
           - os: ubuntu-latest
-            target: x86_64-unknown-linux-musl
-            suffix: '-linux'
-            archive: tar.gz
+            target: x86_64-unknown-linux-gnu
+            suffix: '.tar.gz'
+            archive_type: tar
 
     steps:
       - id: get_repository_name
@@ -64,16 +64,16 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: ${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}-${{ matrix.target }}
-          path: ./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}${{ matrix.suffix }}
+          path: ./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}
       - name: Archive Release
         uses: thedoctor0/zip-release@main
         with:
-          type: 'zip'
-          filename: '${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}${{ matrix.suffix }}.zip'
-          path: "./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}${{ matrix.suffix }}"
+          type: '${{matrix.archive_type}}'
+          filename: '${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}-${{ matrix.target }}{{matrix.suffix}}'
+          path: "./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}"
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}${{ matrix.suffix }}.zip"
+          artifacts: "${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}-${{ matrix.target }}{{matrix.suffix}}"
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
  
