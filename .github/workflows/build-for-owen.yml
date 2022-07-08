@@ -65,16 +65,15 @@ jobs:
         with:
           name: ${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}-${{ matrix.target }}
           path: ./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}${{ matrix.suffix }}
-
-      # - uses: ncipollo/release-action@v1
-      #   with:
-      #     artifacts: "./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}${{ matrix.suffix }}"
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     allowUpdates: true
-      - name: Compile and release
-        uses: rust-build/rust-build.action@v1.3.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Archive Release
+        uses: thedoctor0/zip-release@main
         with:
-          RUSTTARGET: ${{ matrix.target }}
-          ARCHIVE_TYPES: ${{ matrix.archive }}
+          type: 'zip'
+          filename: '${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}${{ matrix.suffix }}.zip'
+          path: "./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}${{ matrix.suffix }}"
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}${{ matrix.suffix }}.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          allowUpdates: true
+ 
