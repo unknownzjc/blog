@@ -1,4 +1,5 @@
 use libs::regex::Regex;
+use libs::regex::escape;
 
 pub fn has_anchor_id(content: &str, anchor: &str) -> bool {
     let checks = anchor_id_checks(anchor);
@@ -6,7 +7,8 @@ pub fn has_anchor_id(content: &str, anchor: &str) -> bool {
 }
 
 fn anchor_id_checks(anchor: &str) -> Regex {
-    Regex::new(&format!(r#" (?i)(id|name) *= *("|')*{}("|'| |>)+"#, anchor)).unwrap()
+    Regex::new(&format!(r#"\s(?i)(id|name) *= *("|')*{}("|'| |>)+"#,
+                        escape(anchor))).unwrap()
 }
 
 #[cfg(test)]
@@ -39,5 +41,16 @@ mod tests {
         // Case variants
         assert!(m(r#"<a ID="fred">"#));
         assert!(m(r#"<a iD="fred">"#));
+
+        // Newline variants
+        assert!(m(r#"<a
+id="fred">"#));
+
+        // Escaped Anchors
+        assert!(check("fred?george", r#"<a id="fred?george">"#));
+        assert!(check("fred.george", r#"<a id="fred.george">"#));
+
+        // Non matchers
+        assert!(!m(r#"<a notid="fred">"#));
     }
 }
