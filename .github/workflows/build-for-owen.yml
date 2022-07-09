@@ -61,10 +61,6 @@ jobs:
         with:
           command: build
           args: '--release'
-      - uses: actions/upload-artifact@master
-        with:
-          name: ${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}-${{ matrix.target }}
-          path: ./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}
       - name: Archive Release
         uses: thedoctor0/zip-release@main
         with:
@@ -74,7 +70,10 @@ jobs:
           directory: "./target/release"
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}-${{ matrix.target }}${{matrix.suffix}}"
+          artifacts: "./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}-${{ matrix.target }}${{matrix.suffix}}"
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
- 
+       - uses: actions/upload-artifact@master
+        with:
+          name: ${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}-${{ matrix.target }}
+          path: ./target/release/${{ steps.get_repository_name.outputs.REPOSITORY_NAME }}-${{matrix.target}}${{matrix.suffix}}
