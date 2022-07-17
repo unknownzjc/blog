@@ -365,11 +365,13 @@ impl Site {
                     let filename = format!("_index.{}.md", l);
                     index_section.file.path = self.content_path.join(&filename);
                     index_section.file.relative = filename;
+                    index_section.file.canonical = self.content_path.join(format!("_index.{}", l));
                 } else {
                     index_section.file.name = "_index".to_string();
                     index_section.permalink = self.config.make_permalink("");
                     index_section.file.path = self.content_path.join("_index.md");
                     index_section.file.relative = "_index.md".to_string();
+                    index_section.file.canonical = self.content_path.join("_index");
                     index_section.path = "/".to_string();
                 }
                 index_section.lang = index_section.file.find_language(
@@ -534,12 +536,7 @@ impl Site {
 
     /// Find all the tags and categories if it's asked in the config
     pub fn populate_taxonomies(&mut self) -> Result<()> {
-        if self.config.taxonomies.is_empty() {
-            return Ok(());
-        }
-
         self.taxonomies = self.library.read().unwrap().find_taxonomies(&self.config);
-
         Ok(())
     }
 
