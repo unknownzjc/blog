@@ -48,7 +48,7 @@ description = ""
 # A draft section is only loaded if the `--drafts` flag is passed to `zola build`, `zola serve` or `zola check`.
 draft = false
 
-# Used to sort pages by "date", "update_date", "title", "title_bytes", "weight", or "none". See below for more information.
+# Used to sort pages by "date", "update_date", "title", "title_bytes", "weight", "slug" or "none". See below for more information.
 sort_by = "none"
 
 # Used by the parent section to order its subsections.
@@ -144,7 +144,7 @@ create a list of links to the posts, a simple template might look like this:
 This would iterate over the posts in the order specified
 by the `sort_by` variable set in the `_index.md` page for the corresponding
 section.  The `sort_by` variable can be given a few values: `date`, `update_date`
-`title`, `title_bytes`, `weight` or `none`.  If `sort_by` is not set, the pages will be
+`title`, `title_bytes`, `weight`, `slug` or `none`.  If `sort_by` is not set, the pages will be
 sorted in the `none` order, which is not intended for sorted content.
 
 Any page that is missing the data it needs to be sorted will be ignored and
@@ -188,10 +188,13 @@ of the Swedish alphabet, åäö, for example would be considered by the natural
 sort as aao. In that case the standard byte-order sort may be more suitable.
 
 ### `weight`
-This will be sort all pages by their `weight` field, from lightest weight
-(at the top of the list) to heaviest (at the bottom of the list).  Each
+This will sort all pages by their `weight` field, from the lightest weight
+(at the top of the list) to the heaviest (at the bottom of the list). Each
 page gets `page.lower` and `page.higher` variables that contain the
 pages with lighter and heavier weights, respectively.
+
+### `slug`
+This will sort pages or sections by their slug in natural lexical order.
 
 ### Reversed sorting
 When iterating through pages, you may wish to use the Tera `reverse` filter,

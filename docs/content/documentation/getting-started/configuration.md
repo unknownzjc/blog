@@ -41,6 +41,10 @@ theme = ""
 # For overriding the default output directory `public`, set it to another value (e.g.: "docs")
 output_dir = "public"
 
+# Whether dotfiles at the root level of the output directory are preserved when (re)building the site.
+# Enabling this also prevents the deletion of the output folder itself on rebuilds.
+preserve_dotfiles_in_output = false
+
 # When set to "true", the Sass files in the `sass` directory in the site root are compiled.
 # Sass files in theme directories are always compiled.
 compile_sass = false
@@ -142,6 +146,10 @@ external_level = "error"
 paths = "on"
 taxonomies = "on"
 anchors = "on"
+# Whether to remove date prefixes for page path slugs.
+# For example, content/posts/2016-10-08_a-post-with-dates.md => posts/a-post-with-dates
+# When true, content/posts/2016-10-08_a-post-with-dates.md => posts/2016-10-08-a-post-with-dates
+paths_keep_dates = false
 
 [search]
 # Whether to include the title of the page/section in the index
@@ -155,6 +163,10 @@ include_content = true
 # At which character to truncate the content to. Useful if you have a lot of pages and the index would
 # become too big to load on the site. Defaults to not being set.
 # truncate_content_length = 100
+
+# Wether to produce the search index as a javascript file or as a JSON file
+# Accepted value "elasticlunr_javascript" or "elasticlunr_json"
+index_format = "elasticlunr_javascript"
 
 # Optional translation object for the default language
 # Example:
@@ -195,48 +207,48 @@ include_content = true
 
 Zola currently has the following highlight themes available:
 
-- [1337](https://tmtheme-editor.herokuapp.com/#!/editor/theme/1337)
-- [agola-dark](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Agola%20Dark)
-- [ascetic-white](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Ascetic%20White)
-- [axar](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Axar)
+- [1337](https://tmtheme-editor.glitch.me/#!/editor/theme/1337)
+- [agola-dark](https://tmtheme-editor.glitch.me/#!/editor/theme/Agola%20Dark)
+- [ascetic-white](https://tmtheme-editor.glitch.me/#!/editor/theme/Ascetic%20White)
+- [axar](https://tmtheme-editor.glitch.me/#!/editor/theme/Axar)
 - [ayu-dark](https://github.com/dempfi/ayu)
 - [ayu-light](https://github.com/dempfi/ayu)
 - [ayu-mirage](https://github.com/dempfi/ayu)
 - [base16-atelierdune-light](https://atelierbram.github.io/syntax-highlighting/atelier-schemes/dune/)
-- [base16-ocean-dark](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Base16%20Ocean%20Dark)
-- [base16-ocean-light](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Base16%20Ocean%20Light)
-- [bbedit](https://tmtheme-editor.herokuapp.com/#!/editor/theme/BBEdit)
-- [boron](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Boron)
-- [charcoal](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Charcoal)
-- [cheerfully-light](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Cheerfully%20Light)
-- [classic-modified](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Classic%20Modified)
-- [demain](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Demain)
-- [dimmed-fluid](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Dimmed%20Fluid)
+- [base16-ocean-dark](https://tmtheme-editor.glitch.me/#!/editor/theme/Base16%20Ocean%20Dark)
+- [base16-ocean-light](https://tmtheme-editor.glitch.me/#!/editor/theme/Base16%20Ocean%20Light)
+- [bbedit](https://tmtheme-editor.glitch.me/#!/editor/theme/BBEdit)
+- [boron](https://tmtheme-editor.glitch.me/#!/editor/theme/Boron)
+- [charcoal](https://tmtheme-editor.glitch.me/#!/editor/theme/Charcoal)
+- [cheerfully-light](https://tmtheme-editor.glitch.me/#!/editor/theme/Cheerfully%20Light)
+- [classic-modified](https://tmtheme-editor.glitch.me/#!/editor/theme/Classic%20Modified)
+- [demain](https://tmtheme-editor.glitch.me/#!/editor/theme/Demain)
+- [dimmed-fluid](https://tmtheme-editor.glitch.me/#!/editor/theme/Dimmed%20Fluid)
 - [dracula](https://draculatheme.com/)
-- [gray-matter-dark](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Gray%20Matter%20Dark)
+- [gray-matter-dark](https://tmtheme-editor.glitch.me/#!/editor/theme/Gray%20Matter%20Dark)
 - [green](https://github.com/kristopherjohnson/MonochromeSublimeText)
 - [gruvbox-dark](https://github.com/morhetz/gruvbox)
 - [gruvbox-light](https://github.com/morhetz/gruvbox)
-- [idle](https://tmtheme-editor.herokuapp.com/#!/editor/theme/IDLE)
-- [inspired-github](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Inspiredgithub)
-- [ir-white](https://tmtheme-editor.herokuapp.com/#!/editor/theme/IR_White)
-- [kronuz](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Kronuz)
-- [material-dark](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Material%20Dark)
-- [material-light](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Material%20Light)
-- [monokai](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Monokai)
+- [idle](https://tmtheme-editor.glitch.me/#!/editor/theme/IDLE)
+- [inspired-github](https://tmtheme-editor.glitch.me/#!/editor/theme/Inspiredgithub)
+- [ir-white](https://tmtheme-editor.glitch.me/#!/editor/theme/IR_White)
+- [kronuz](https://tmtheme-editor.glitch.me/#!/editor/theme/Kronuz)
+- [material-dark](https://tmtheme-editor.glitch.me/#!/editor/theme/Material%20Dark)
+- [material-light](https://tmtheme-editor.glitch.me/#!/editor/theme/Material%20Light)
+- [monokai](https://tmtheme-editor.glitch.me/#!/editor/theme/Monokai)
 - [nord](https://github.com/crabique/Nord-plist/tree/0d655b23d6b300e691676d9b90a68d92b267f7ec)
 - [nyx-bold](https://github.com/GalAster/vscode-theme-nyx)
 - [one-dark](https://github.com/andresmichel/one-dark-theme)
 - [OneHalfDark](https://github.com/sonph/onehalf)
 - [OneHalfLight](https://github.com/sonph/onehalf)
 - [railsbase16-green-screen-dark](https://github.com/tompave/rails_base_16)
-- [solarized-dark](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Solarized%20(dark))
-- [solarized-light](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Solarized%20(light))
+- [solarized-dark](https://tmtheme-editor.glitch.me/#!/editor/theme/Solarized%20(dark))
+- [solarized-light](https://tmtheme-editor.glitch.me/#!/editor/theme/Solarized%20(light))
 - [subway-madrid](https://github.com/idleberg/Subway.tmTheme)
 - [subway-moscow](https://github.com/idleberg/Subway.tmTheme)
-- [Tomorrow](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Tomorrow)
+- [Tomorrow](https://tmtheme-editor.glitch.me/#!/editor/theme/Tomorrow)
 - [two-dark](https://github.com/erremauro/TwoDark)
-- [visual-studio-dark](https://tmtheme-editor.herokuapp.com/#!/editor/theme/Visual%20Studio%20Dark)
+- [visual-studio-dark](https://tmtheme-editor.glitch.me/#!/editor/theme/Visual%20Studio%20Dark)
 - [zenburn](https://github.com/colinta/zenburn)
 
 Zola uses the Sublime Text themes, making it very easy to add more.

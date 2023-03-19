@@ -21,7 +21,7 @@ fn can_parse_site() {
     let library = site.library.read().unwrap();
 
     // Correct number of pages (sections do not count as pages, draft are ignored)
-    assert_eq!(library.pages.len(), 33);
+    assert_eq!(library.pages.len(), 34);
     let posts_path = path.join("content").join("posts");
 
     // Make sure the page with a url doesn't have any sections
@@ -39,7 +39,7 @@ fn can_parse_site() {
     // And that the sections are correct
     let index_section = library.sections.get(&path.join("content").join("_index.md")).unwrap();
     assert_eq!(index_section.subsections.len(), 5);
-    assert_eq!(index_section.pages.len(), 3);
+    assert_eq!(index_section.pages.len(), 4);
     assert!(index_section.ancestors.is_empty());
 
     let posts_section = library.sections.get(&posts_path.join("_index.md")).unwrap();
@@ -220,6 +220,13 @@ fn can_build_site_without_live_reload() {
         public,
         "robots.txt",
         "Sitemap: https://replace-this-with-your-url.com/sitemap.xml"
+    ));
+
+    // And
+    assert!(file_contains!(
+        public,
+        "colocated-assets/index.html",
+        "Assets in root content directory"
     ));
 }
 
@@ -777,7 +784,7 @@ fn can_ignore_markdown_content() {
 fn can_cachebust_static_files() {
     let (_, _tmp_dir, public) = build_site("test_site");
     assert!(file_contains!(public, "index.html",
-        "<link href=\"https://replace-this-with-your-url.com/site.css?h=83bd983e8899946ee33d0fde18e82b04d7bca1881d10846c769b486640da3de9\" rel=\"stylesheet\">"));
+        "<link href=\"https://replace-this-with-your-url.com/site.css?h=83bd983e8899946ee33d\" rel=\"stylesheet\">"));
 }
 
 #[test]
@@ -834,6 +841,31 @@ fn panics_on_invalid_external_domain() {
     // panic
     site.config.enable_check_mode();
     site.load().expect("link check test_site");
+}
+
+#[test]
+fn can_find_site_and_page_authors() {
+    let mut path = env::current_dir().unwrap().parent().unwrap().parent().unwrap().to_path_buf();
+    path.push("test_site");
+    let config_file = path.join("config.toml");
+    let mut site = Site::new(&path, config_file).unwrap();
+    site.load().unwrap();
+    let library = site.library.read().unwrap();
+
+    // The config has a global default author set.
+    let author = site.config.author;
+    assert_eq!(Some("config@example.com (Config Author)".to_string()), author);
+
+    let posts_path = path.join("content").join("posts");
+    let posts_section = library.sections.get(&posts_path.join("_index.md")).unwrap();
+
+    let p1 = &library.pages[&posts_section.pages[0]];
+    let p2 = &library.pages[&posts_section.pages[1]];
+
+    // Only the first page has had an author added.
+    assert_eq!(1, p1.meta.authors.len());
+    assert_eq!("page@example.com (Page Author)", p1.meta.authors.get(0).unwrap());
+    assert_eq!(0, p2.meta.authors.len());
 }
 
 // Follows test_site/themes/sample/templates/current_path.html
