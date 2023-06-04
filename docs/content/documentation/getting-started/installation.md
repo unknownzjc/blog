@@ -197,28 +197,15 @@ Zola does not work in PowerShell ISE.
 
 ## From source
 To build Zola from source, you will need to have Git, [Rust and Cargo](https://www.rust-lang.org/)
-installed. You will also need to meet additional dependencies to compile [libsass](https://github.com/sass/libsass):
+installed.
 
-- OSX, Linux and other Unix-like operating systems: `make` (`gmake` on BSDs), `g++`, `libssl-dev`
-  - NixOS: Create a `shell.nix` file in the root of the cloned project with the following contents:
-  ```nix
-   with import <nixpkgs> {};
-
-   pkgs.mkShell {
-     buildInputs = [
-       libsass
-       openssl
-       pkgconfig
-    ];
-   }
-  ```
-  - Then, invoke `nix-shell`. This opens a shell with the above dependencies. Then, run `cargo build --release` to build the project.
-- Windows (a bit trickier): updated `MSVC` and overall updated VS installation
-
-From a terminal, you can now run the following command:
+From a terminal, you can now run the following commands:
 
 ```sh
-$ cargo build --release
+$ git clone https://github.com/getzola/zola.git
+$ cd zola
+$ cargo install --path .
+$ zola --version
 ```
 
 If you encountered compilation errors like `error: failed to run custom build command for 'ring v0.16.20'`, you can try the command below instead:
@@ -228,5 +215,10 @@ $ cargo build --release --no-default-features --features=native-tls
 ```
 
 The binary will be available in the `target/release` directory. You can move it in your `$PATH` to have the
-`zola` command available globally or in a directory if you want for example to have the binary in the
-same repository as the site.
+`zola` command available globally:
+
+```sh
+$ cp target/release/zola ~/.cargo/bin/zola
+```
+
+or in a directory if you want for example to have the binary in the same repository as the site.

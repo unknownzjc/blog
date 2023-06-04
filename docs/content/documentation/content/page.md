@@ -22,7 +22,7 @@ an underscore (`_`) or a dash (`-`) will use that date as the page date, unless 
 in the front matter. The page name will be anything after `_`/`-`, so the file `2018-10-10-hello-world.md` will
 be available at `[base_url]/hello-world`. Note that the full RFC3339 datetime contains colons, which is not a valid
 character in a filename on Windows.
-This behavior can be disabled by setting `slugify.paths_keep_date` to `true` (the default is `false`). Note that a `_` separating the date would be slugified into a `-` with the default value for `slugify.paths` of `"on"`.
+This behavior can be disabled by setting `slugify.paths_keep_dates` to `true` (the default is `false`). Note that a `_` separating the date would be slugified into a `-` with the default value for `slugify.paths` of `"on"`.
 
 As you can see, creating an `about.md` file is equivalent to creating an
 `about/index.md` file. The only difference between the two methods is that creating
@@ -49,17 +49,17 @@ If you want URLs containing non-ASCII characters, `slugify.paths` needs to be se
 
 The output path for the page will first be read from the `slug` key in the page's frontmatter.
 
-**Example:** (file `content/zines/mlf-kurdistan.md`)
+**Example:** (file `content/zines/élevage-chèvre.md`)
 
 ```
 +++
-title = "Le mouvement des Femmes Libres, à la tête de la libération kurde"
-slug = "femmes-libres-libération-kurde"
+title = "L'élevage de chèvres, la carrière alternative de tous dévelopeurs'"
+slug = "élevage-chèvre-carrière-alternative"
 +++
 This is my article.
 ```
 
-This frontmatter will output the article to `[base_url]/zines/femmes-libres-libération-kurde` with `slugify.paths` set to `"safe"` or `"off"`, and to `[base_url]/zines/femmes-libres-liberation-kurde` with the default value for `slugify.paths` of `"on"`.
+This frontmatter will output the article to `[base_url]/zines/élevage-chèvre-carrière-alternative` with `slugify.paths` set to `"safe"` or `"off"`, and to `[base_url]/zines/elevage-chevre-carriere-alternative` with the default value for `slugify.paths` of `"on"`.
 
 ### Path from filename
 
