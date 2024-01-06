@@ -90,7 +90,7 @@
                     {{ page.content | striptags | truncate(length=280) | safe }}
                     {%- endif %}
                 </div>
-                <a href="{{ page.permalink }}" class="c-article__btn p-list-article__btn">Read more...</a>
+                <a href="{{ page.permalink }}" class="c-article__btn p-list-article__btn"> → 继续阅读需要: {{page.reading_time}} min</a>
             </article>
             {% endfor %}
 

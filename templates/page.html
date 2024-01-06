@@ -31,14 +31,10 @@ truncate(length=280) | trim | safe }}">
     <h1>{{ page.title | markdown | striptags }}</h1>
     <div>
       <div class="c-time">
-
-        <time datetime="{{ page.date | date(format=" %F") | safe }}">
-          {{ page.date | date(format="%F") }}
-        </time>
         {% if page.extra.author -%}
         by {{ page.extra.author}}
         {%- endif %}
-        {{ " - " }}({{ page.reading_time }} min read)
+        <!-- ({{ page.reading_time }} min read) -->
       </div>
     </div>
   </header>
