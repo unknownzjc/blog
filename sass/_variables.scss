@@ -1,29 +1,29 @@
 // Selenized White
-// Ref: https://github.com/jan-warchol/selenized/blob/master/the-values.md#selenized-white
-$bg_0: lab(100% 0 0);
-$bg_1: lab(93% 0 0);
-$bg_2: lab(82% 0 0);
-$dim_0: lab(56% 0 0);
-$fg_0: lab(30% 0 0);
-$fg_1: lab(16% 0 0);
+// Ref: https://github.com/jan-warchol/selenized/blob/master/the-values.md#selenized-light
+$bg_0: lab(96% 0 13);
+$bg_1: lab(91% 0 13);
+$bg_2: lab(82% 0 13);
+$dim_0: lab(62% -4 1);
+$fg_0: lab(42% -6 -6);
+$fg_1: lab(31% -6 -6);
 
-$red: lab(40% 88 56);
-$green: lab(54% -53 77);
-$yellow: lab(65% 8 95);
-$blue: lab(40% 0 -80);
-$magenta: lab(50% 77 -21);
-$cyan: lab(61% -56 -6);
-$orange: lab(51% 52 70);
-$violet: lab(45% 42 -63);
+$red: lab(46% 66 42);
+$green: lab(54% -40 58);
+$yellow: lab(59% 6 71);
+$blue: lab(46% 0 -60);
+$magenta: lab(52% 58 -16);
+$cyan: lab(57% -42 -4);
+$orange: lab(52% 39 52);
+$violet: lab(49% 32 -47);
 
-$br_red: lab(33% 88 56);
-$br_green: lab(47% -53 77);
-$br_yellow: lab(58% 8 95);
-$br_blue: lab(33% 0 -80);
-$br_magenta: lab(43% 77 -21);
-$br_cyan: lab(54% -56 -6);
-$br_orange: lab(44% 52 70);
-$br_violet: lab(38% 42 -63);
+$br_red: lab(44% 66 42);
+$br_green: lab(52% -40 58);
+$br_yellow: lab(57% 6 71);
+$br_blue: lab(44% 0 -60);
+$br_magenta: lab(50% 58 -16);
+$br_cyan: lab(55% -42 -4);
+$br_orange: lab(50% 39 52);
+$br_violet: lab(47% 32 -47);
 
 $fig-height: 45em;
 

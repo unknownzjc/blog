@@ -1,9 +1,13 @@
 # The URL the site will be built for
 base_url = "https://comfy-caramel-765c2a.netlify.app"
 output_dir = "docs/public"
+title = "Unknown's Lab"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
+
+# When set to "true", a feed is automatically generated.
+generate_feed = true
 
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
@@ -20,3 +24,5 @@ highlight_code = true
 
 [extra]
 # Put all your custom variables here
+
+subtitle = ""
