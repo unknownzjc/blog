@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://comfy-caramel-765c2a.netlify.app"
+base_url = "https://imunknown.org"
 output_dir = "docs/public"
 title = "Unknown's Lab"
 
