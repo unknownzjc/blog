@@ -4,6 +4,10 @@ title = "各种链接"
 categories = ["Journal"] 
 +++
 
+## 2024-01-10
+- [Dave Stucky 处理信息过载的方法](https://stucky.tech/method/)
+- [关于 Dave Stuck 的介绍](https://stucky.tech/creations/)
+
 ## 2024-01-08
 - [如何快速搭建一个自己的WordPress博客](https://imwsl.com/?p=67)
 - [增强长期记忆](https://augmentingcognition.com/ltm.html)
