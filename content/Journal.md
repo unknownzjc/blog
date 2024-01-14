@@ -4,6 +4,9 @@ title = "各种链接"
 categories = ["Journal"] 
 +++
 
+##2024-01-14
+- [理想是人生的彈簧](https://www.youtube.com/watch?v=8tBs1wobWC8&t=1s)
+
 ## 2024-01-11
 - [乔希·考夫曼如何进行研究][1]
 	- [双语版][2]
